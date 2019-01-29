@@ -8,7 +8,7 @@ This theme component displays a category's most popular tags in a sticky sidebar
 
 
 
-:hammer_and_wrench: [Github repo](https://github.com/awesomerobot/discourse-tag-sidebar):  `https://github.com/awesomerobot/discourse-tag-sidebar`
+:speech_balloon: https://meta.discourse.org/t/discourse-tag-sidebar/107853
 
  :thinking: https://meta.discourse.org/t/how-do-i-install-a-theme-or-theme-component/63682
 
