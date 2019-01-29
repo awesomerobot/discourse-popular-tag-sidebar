@@ -51,7 +51,7 @@
 
 <script type='text/x-handlebars' data-template-name='/connectors/before-topic-list-body/tag-sidebar'>
  {{#if isCat}}
-  <div class="tag-sidebar"> 
+  <div class="tag-sidebar {{cat.slug}}-sidebar"> 
 
     <h3>Popular tags</h3>
       {{#each topTags as |t|}}
