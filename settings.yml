@@ -6,7 +6,7 @@ sidebar_side:
     - right
 
 number_of_tags:
-  default: 10
+  default: 15
   min: 3
   max: 30
   description: Range from 3 - 30 (categories with less than 3 tags will not display a sidebar)
