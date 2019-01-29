@@ -53,7 +53,7 @@
  {{#if isCat}}
   <div class="tag-sidebar {{cat.slug}}-sidebar"> 
 
-    <h3>Popular tags</h3>
+    <h3>{{i18n (theme-prefix "popular_tags")}}</h3>
       {{#each topTags as |t|}}
         <a href="/tags/c/{{cat.slug}}/{{t}}">{{t}}</a>
       {{/each}}  
