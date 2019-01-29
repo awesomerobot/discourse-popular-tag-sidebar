@@ -1,0 +1,17 @@
+sidebar_side: 
+  default: right
+  type: enum
+  choices: 
+    - left
+    - right
+
+number_of_tags:
+  default: 10
+  min: 3
+  max: 30
+  description: Range from 3 - 30 (categories with less than 3 tags will not display a sidebar)
+
+exceptions:
+  default: ""
+  type: list
+  description: Hide the sidebar in these categories

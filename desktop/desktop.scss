@@ -1,0 +1,96 @@
+@import "common/foundation/variables";
+
+
+.topic-list.with-sidebar { // Don't show the sidebar
+  > div {
+    display: none;
+  }
+}
+@media screen and (min-width: 767px) { // Show the sidebar at 767px
+  .topic-list.with-sidebar {
+    display: grid;
+    grid-column-gap: 2%;
+    align-items: start;
+    grid-template-rows: 50px auto;
+    &.left {
+      grid-template-columns: 12% 86%;
+      @media screen and (max-width: 900px) {
+        grid-template-columns: 16% 82%;
+      }
+      grid-template-areas:
+        "sidebar head"
+        "sidebar body";
+    }
+    &.right {
+      grid-template-columns: 86% 12%;
+      @media screen and (max-width: 900px) {
+        grid-template-columns: 82% 16%;
+      }
+      grid-template-areas:
+        "head sidebar"
+        "body sidebar";
+    }
+    thead {
+      grid-area: head;
+      display: table;
+      align-self: end;
+    }
+    > .tag-sidebar {
+      overflow: hidden;
+      display: block;
+      margin-top: 15px;
+      grid-area: sidebar;
+      order: 3;
+      padding: 0;
+      position: sticky;
+      top: 80px;
+      a {
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+    tbody {
+      grid-area: body;
+      display: table;
+    }
+  }
+}
+
+.custom-sidebar {
+  #list-area .show-more.has-topics .alert { // New topic notification needs to be narrower
+    box-sizing: border-box;
+    width: 78%;
+    @media screen and (max-width: 900px) {
+    width: 73%;
+    }
+  }
+}
+
+// IE11 support, feel free to toss this into the sea
+
+@media screen and (min-width: 767px) {
+  .topic-list.with-sidebar {
+    display: -ms-grid;
+    -ms-grid-columns: 78% 20%;
+    -ms-grid-rows: 50px auto;
+    thead {
+      -ms-grid-row: 1;
+      -ms-grid-column: 1;
+      width: 100%;
+      tr {
+        border-bottom: none;
+      }
+    }
+    > div {
+      -ms-grid-row: 1;
+      -ms-grid-column: 2;
+      -ms-grid-row-span: 2;
+    }
+    tbody {
+      -ms-grid-row: 2;
+      -ms-grid-column: 1;
+    }
+  }
+}

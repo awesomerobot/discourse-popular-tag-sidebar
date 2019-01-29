@@ -1,0 +1,64 @@
+<script type="text/discourse-plugin" version="0.8">
+  const container = Discourse.__container__;
+
+  api.registerConnectorClass('before-topic-list-body', 'tag-sidebar', {
+    tagName: "div.sticky-sidebar",
+    setupComponent(args, component) {
+
+
+      component.set('hostname', window.location.hostname);
+      api.onPageChange((url) => {
+        const path = window.location.pathname;
+        const catController = container.lookup('controller:navigation/category');
+        category = catController.get("category");
+
+        const isException = category && 
+            settings.exceptions.split("|").includes(category.name);
+
+        if(/^\/c\//.test(path) && !isException) {
+    
+          const tagController = container.lookup("controller:discovery/topics");
+     
+          topTags = tagController.get("model.topic_list.top_tags");
+
+          if (settings.number_of_tags < topTags.length ) {
+            topTags.length = settings.number_of_tags;
+          }
+
+          if (topTags.length > 2) {
+
+          $('html').addClass('custom-sidebar'); 
+          $(".topic-list").addClass("with-sidebar").addClass(settings.sidebar_side);
+          if (this.isDestroyed || this.isDestroying) {
+            return;
+          }
+          component.set('topTags', topTags);
+          component.set('cat', category);
+          component.set('isCat', true);
+        } else {
+          $('html').removeClass('custom-sidebar'); 
+          $(".topic-list").removeClass("with-sidebar").removeClass(settings.sidebar_side);
+
+        }
+
+      }
+      
+  
+  })
+}
+  });
+</script>
+
+<script type='text/x-handlebars' data-template-name='/connectors/before-topic-list-body/tag-sidebar'>
+ {{#if isCat}}
+  <div class="tag-sidebar"> 
+
+    <h3>Popular tags</h3>
+      {{#each topTags as |t|}}
+        <a href="/tags/c/{{cat.slug}}/{{t}}">{{t}}</a>
+      {{/each}}  
+
+  </div>
+
+{{/if}}
+</script>
