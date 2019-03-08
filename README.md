@@ -1,4 +1,4 @@
-# discourse-tag-sidebar
+# discourse-popular-tag-sidebar
 
 This theme component displays a category's most popular tags in a sticky sidebar on screens wider than 767px (most tablets and desktop devices). 
 
@@ -8,7 +8,7 @@ This theme component displays a category's most popular tags in a sticky sidebar
 
 
 
-:speech_balloon: https://meta.discourse.org/t/discourse-tag-sidebar/107853
+:speech_balloon: https://meta.discourse.org/t/discourse-popular-tag-sidebar/107853
 
  :thinking: https://meta.discourse.org/t/how-do-i-install-a-theme-or-theme-component/63682
 
