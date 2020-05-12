@@ -12,13 +12,22 @@
         const catController = container.lookup('controller:navigation/category');
         category = catController.get("category");
 
-        const isException = category && 
+        const isException = category &&
             settings.exceptions.split("|").includes(category.name);
 
-        if(/^\/c\//.test(path) && !isException) {
-    
+        const topMenuRoutes =
+        Discourse.SiteSettings.top_menu.split('|')
+        .map(function(route) {return '/' + route});
+
+        let noCategories = topMenuRoutes.indexOf("/categories")
+
+        if (noCategories > -1) {
+          topMenuRoutes.splice(noCategories, 1);
+        }
+
+      if(/^\/c\//.test(path) && !isException || (settings.show_on_toproutes && topMenuRoutes.indexOf(path) && !/^\/tag\//.test(path))) {
+
           const tagController = container.lookup("controller:discovery/topics");
-     
           topTags = tagController.get("model.topic_list.top_tags");
 
           if (settings.number_of_tags < topTags.length ) {
@@ -27,38 +36,38 @@
 
           if (topTags.length > 2) {
 
-          $('html').addClass('custom-sidebar'); 
+          $('html').addClass('custom-sidebar');
           $(".topic-list").addClass("with-sidebar").addClass(settings.sidebar_side);
           if (this.isDestroyed || this.isDestroying) {
             return;
           }
           component.set('topTags', topTags);
           component.set('cat', category);
-          component.set('isCat', true);
+          component.set('tagSidebar', true);
+
         } else {
-          $('html').removeClass('custom-sidebar'); 
+          $('html').removeClass('custom-sidebar');
           $(".topic-list").removeClass("with-sidebar").removeClass(settings.sidebar_side);
-
+          component.set('tagSidebar', false);
+          }
         }
-
-      }
-      
-  
-  })
-}
+      })
+    }
   });
 </script>
 
-<script type='text/x-handlebars' data-template-name='/connectors/before-topic-list-body/tag-sidebar'>
- {{#if isCat}}
-  <div class="tag-sidebar {{cat.slug}}-sidebar"> 
+<script
+  type="text/x-handlebars"
+  data-template-name="/connectors/before-topic-list-body/tag-sidebar"
+>
+   {{#if tagSidebar}}
 
-    <h3>{{i18n (theme-prefix "popular_tags")}}</h3>
-      {{#each topTags as |t|}}
-        <a href="/tags/c/{{cat.slug}}/{{t}}">{{t}}</a>
-      {{/each}}  
+      <div class="tag-sidebar {{cat.slug}}-sidebar">
+        <h3>{{i18n (theme-prefix "popular_tags")}}</h3>
+          {{#each topTags as |t|}}
+            <a href="/tags{{if cat '/c/'}}{{if cat.parentCategory (concat cat.parentCategory.slug "/")}}{{cat.slug}}/{{t}}">{{t}}</a>
+          {{/each}}
+      </div>
 
-  </div>
-
-{{/if}}
+  {{/if}}
 </script>

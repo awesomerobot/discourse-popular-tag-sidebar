@@ -1,7 +1,7 @@
-sidebar_side: 
+sidebar_side:
   default: right
   type: enum
-  choices: 
+  choices:
     - left
     - right
 
@@ -10,6 +10,14 @@ number_of_tags:
   min: 3
   max: 30
   description: Range from 3 - 30 (categories with less than 3 tags will not display a sidebar)
+
+show_on_toproutes:
+  default: false
+  type: bool
+  description: |
+    Show on top menu pages (Latest, New, Top, etc).
+    <br/>
+    <a href="/admin/site_settings/category/all_results?filter=top menu">Top menu is defined by this site setting.</a>
 
 exceptions:
   default: ""
