@@ -25,14 +25,11 @@
           topMenuRoutes.splice(noCategories, 1);
         }
 
-      if(/^\/c\//.test(path) && !isException || (settings.show_on_toproutes && topMenuRoutes.indexOf(path) && !/^\/tag\//.test(path))) {
+      if(/^\/c\//.test(path) && !isException || (settings.show_on_toproutes && (topMenuRoutes.indexOf(path) > -1) && !/^\/tag\//.test(path))) {
 
           const tagController = container.lookup("controller:discovery/topics");
           topTags = tagController.get("model.topic_list.top_tags");
 
-          if (settings.number_of_tags < topTags.length ) {
-            topTags.length = settings.number_of_tags;
-          }
 
           if (topTags.length > 2) {
 
