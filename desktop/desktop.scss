@@ -1,12 +1,11 @@
-@import "common/foundation/variables";
-
-
-.topic-list.with-sidebar { // Don't show the sidebar
+.topic-list.with-sidebar {
+  // Don't show the sidebar
   > div {
     display: none;
   }
 }
-@media screen and (min-width: 767px) { // Show the sidebar at 767px
+@media screen and (min-width: 767px) {
+  // Show the sidebar at 767px
   .topic-list.with-sidebar {
     display: grid;
     grid-column-gap: 2%;
@@ -59,11 +58,12 @@
 }
 
 .custom-sidebar {
-  #list-area .show-more.has-topics .alert { // New topic notification needs to be narrower
+  #list-area .show-more.has-topics .alert {
+    // New topic notification needs to be narrower
     box-sizing: border-box;
     width: 78%;
     @media screen and (max-width: 900px) {
-    width: 73%;
+      width: 73%;
     }
   }
 }
