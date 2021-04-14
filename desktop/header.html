@@ -10,7 +10,7 @@
       api.onPageChange((url) => {
         const path = window.location.pathname;
         const catController = container.lookup('controller:navigation/category');
-        category = catController.get("category");
+        const category = catController.get("category");
 
         const isException = category &&
             settings.exceptions.split("|").includes(category.name);
