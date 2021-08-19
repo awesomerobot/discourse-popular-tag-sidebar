@@ -15,9 +15,13 @@
         const isException = category &&
             settings.exceptions.split("|").includes(category.name);
 
+        const siteSettings = container.lookup("site-settings:main");
+
+
         const topMenuRoutes =
-        Discourse.SiteSettings.top_menu.split('|')
+        siteSettings.top_menu.split('|')
         .map(function(route) {return '/' + route});
+
 
         let noCategories = topMenuRoutes.indexOf("/categories")
 
