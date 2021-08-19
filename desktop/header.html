@@ -32,7 +32,7 @@
       if(/^\/c\//.test(path) && !isException || (settings.show_on_toproutes && (topMenuRoutes.indexOf(path) > -1) && !/^\/tag\//.test(path))) {
 
           const tagController = container.lookup("controller:discovery/topics");
-          topTags = tagController.get("model.topic_list.top_tags");
+          let topTags = tagController.get("model.topic_list.top_tags");
 
 
           if (topTags.length > 2) {
