@@ -34,6 +34,9 @@
           const tagController = container.lookup("controller:discovery/topics");
           let topTags = tagController.get("model.topic_list.top_tags");
 
+          if (settings.number_of_tags) {
+            topTags.length = settings.number_of_tags;
+          }
 
           if (topTags.length > 2) {
 
